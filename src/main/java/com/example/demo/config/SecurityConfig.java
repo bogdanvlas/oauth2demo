@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,11 +10,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/free/**").permitAll()
+		.antMatchers("/index").permitAll()
 		.antMatchers("/secured/**").authenticated()
 		.and()
 		.oauth2Login()
-		.loginPage("/oauth_login")
+		.loginPage("/login/oauth2")
 		.defaultSuccessUrl("/secured")
 		;
 	}

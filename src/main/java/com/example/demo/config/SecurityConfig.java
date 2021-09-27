@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import com.example.demo.service.CustomOAuth2UserService;
+import com.example.demo.service.CustomOidcUserService;
 
 import lombok.AllArgsConstructor;
 
@@ -13,6 +14,8 @@ import lombok.AllArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	private CustomOAuth2UserService userService;
+	
+	private CustomOidcUserService oidcUserService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -25,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/login/oauth2")
 		.defaultSuccessUrl("/secured")
 		.userInfoEndpoint()
-		.userService(userService)
+		.userService(userService)//oauth2 - github
+		.oidcUserService(oidcUserService)//OpenId Connect - google
 		;
 	}
 

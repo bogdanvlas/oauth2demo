@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,7 +17,7 @@ public class PageController {
 	}
 	
 	@GetMapping("/secured")
-	public String securedPage() {
+	public String securedPage(OAuth2AuthenticationToken token) {
 		return "securedPage";
 	}
 }
